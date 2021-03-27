@@ -93,25 +93,5 @@ export default class TerminalController {
     this.#registerEvents(eventEmitter, components);
     components.input.focus();
     components.screen.render();
-
-    //only for test
-    setInterval(() => {
-      const users = [];
-      eventEmitter.emit("message:received", {
-        message: "hey",
-        userName: "vito",
-      });
-      eventEmitter.emit("message:received", {
-        message: "teste",
-        userName: "bia",
-      });
-      eventEmitter.emit("activityLog:updated", "vito join");
-      eventEmitter.emit("activityLog:updated", "bia join");
-      eventEmitter.emit("activityLog:updated", "bia left");
-      eventEmitter.emit("activityLog:updated", "vito left");
-
-      users.push("vito", "bia");
-      eventEmitter.emit(constants.events.app.STATUS_UPDATED, users);
-    }, 2000);
   }
 }
