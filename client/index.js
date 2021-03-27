@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
 node index.js \
   --username vitobreda

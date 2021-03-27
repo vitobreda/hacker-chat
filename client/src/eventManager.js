@@ -14,12 +14,23 @@ export default class EventManager {
     });
   }
 
+  disconnectUser(user) {
+    const { userName, id } = user;
+    this.#allUsers.delete(id);
+    this.#updateActivityLogComponenet(`${userName} left!`);
+    this.#updateUsersComponent();
+  }
+
   updateUsers(users) {
     const connectedUsers = users;
     connectedUsers.forEach(({ id, userName }) =>
       this.#allUsers.set(id, userName)
     );
     this.#updateUsersComponent();
+  }
+
+  message(message) {
+    this.componentEmiter.emit(constants.events.app.MESSAGE_RECEIVED, message);
   }
 
   newUserConnected(message) {
